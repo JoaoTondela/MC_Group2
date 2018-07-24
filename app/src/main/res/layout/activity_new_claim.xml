@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".NewClaim">
 
     <LinearLayout
@@ -23,32 +24,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="ClaimID" />
+            android:hint="ClaimID"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Plate" />
+            android:hint="Plate"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editText5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName|date"
-            android:text="Date" />
+            android:hint="Date"
+            android:inputType="textPersonName|date" />
 
         <EditText
             android:id="@+id/editText4"
@@ -56,9 +57,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:ems="10"
-            android:gravity="bottom"
+            android:gravity="top|bottom"
             android:inputType="textMultiLine"
-            tools:text="Describe your claim" />
+            tools:hint="Describe your claim" />
 
     </LinearLayout>
 

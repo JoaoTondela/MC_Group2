@@ -19,7 +19,7 @@ public class NewClaim extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_claim);
 
-        buttonSubmit = (Button) findViewById(R.id.button);
+        buttonSubmit = (Button) findViewById(R.id.submitClaim);
         buttonCancel = (Button) findViewById(R.id.BackButton);
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +38,7 @@ public class NewClaim extends AppCompatActivity {
                 // return the return code only; no intent message is required
                 setResult(Activity.RESULT_CANCELED);
                 // write a toast message
-                Toast.makeText(v.getContext(), "Changed button title!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Changes not saved!", Toast.LENGTH_SHORT).show();
                 // finish activity
                 finish();
             }
@@ -46,7 +46,7 @@ public class NewClaim extends AppCompatActivity {
     }
 
     public void submitMe(View view) {
-        Toast mySubmit = new Toast.makeText(this, "Claim submited!", Toast.LENGTH_SHORT);
+        Toast mySubmit = Toast.makeText(this, "Claim submited!", Toast.LENGTH_SHORT);
         mySubmit.show();
     }
 }

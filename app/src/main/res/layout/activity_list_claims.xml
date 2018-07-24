@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".ListClaimsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.02">
+
+            <TextView
+                android:id="@+id/ClaimsHistoryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:text="@string/claim_history"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle" />
+
+            <Button
+                android:id="@+id/LogoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:onClick="logOut"
+                android:text="@string/logout" />
+
+            <Button
+                android:id="@+id/BackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="24dp"
+                android:text="@string/back" />
+
+            <ListView
+                android:id="@+id/ClaimsHistoryIDListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/BackButton"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ClaimsHistoryTextView"
+                android:layout_toStartOf="@+id/ClaimsHistoryTextView" />
+
+            <ListView
+                android:id="@+id/ClaimsHistoryTitlesListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/BackButton"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/ClaimsHistoryTextView"
+                android:layout_toEndOf="@+id/ClaimsHistoryIDListView" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

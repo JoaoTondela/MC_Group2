@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">inSureApp</string>
+    <string name="app_name">inSure Auto</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -15,4 +15,14 @@
         completions."
     </string>
     <string name="logo">Logo</string>
+    <string name="logout">Logout</string>
+    <string name="how_can_we_help">How can we help?</string>
+    <string name="claims_details">Claims Details</string>
+    <string name="new_claim">New Claim</string>
+    <string name="customer_info">Customer Info</string>
+    <string name="back">Back</string>
+    <string name="claim_history">Claim History</string>
+    <string name="messages">Messages</string>
+    <string name="write_your_message">Write your message...</string>
+    <string name="send">Send</string>
 </resources>
