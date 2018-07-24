@@ -17,12 +17,18 @@
     <string name="logo">Logo</string>
     <string name="logout">Logout</string>
     <string name="how_can_we_help">How can we help?</string>
-    <string name="claims_details">Claims Details</string>
+    <string name="claims_details">Your Claims</string>
     <string name="new_claim">New Claim</string>
     <string name="customer_info">Customer Info</string>
     <string name="back">Back</string>
-    <string name="claim_history">Claim History</string>
+    <string name="claim_history">Your Claims</string>
     <string name="messages">Messages</string>
     <string name="write_your_message">Write your message...</string>
     <string name="send">Send</string>
+    <string name="date">Date</string>
+    <string name="plate">Plate</string>
+    <string name="claimid">ClaimID</string>
+    <string name="name">Name</string>
+    <string name="submit">Submit</string>
+    <string name="describe_your_claim">Describe your claim</string>
 </resources>
