@@ -1,4 +1,5 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp;
+//Gala
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
