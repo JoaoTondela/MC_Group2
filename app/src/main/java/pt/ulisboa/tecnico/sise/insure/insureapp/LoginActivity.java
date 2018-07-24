@@ -1,5 +1,5 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp;
-
+// testa para fazer merge para o master
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
