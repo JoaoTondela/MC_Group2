@@ -1,5 +1,6 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,10 +55,11 @@ public class CustomerInfoActivity extends AppCompatActivity {
         // Start the new activity.
         startActivity(logOut);
     }
-
+/*
     public void getCustomerInfo() {
         new CustomerInfo().execute();
     }
+    */
 
 
 }
