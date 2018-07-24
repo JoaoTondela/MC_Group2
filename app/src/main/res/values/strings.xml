@@ -31,4 +31,5 @@
     <string name="name">Name</string>
     <string name="submit">Submit</string>
     <string name="describe_your_claim">Describe your claim</string>
+    <string name="notification">Notification</string>
 </resources>
