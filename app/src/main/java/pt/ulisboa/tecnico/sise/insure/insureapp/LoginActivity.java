@@ -1,5 +1,6 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp;
 
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
