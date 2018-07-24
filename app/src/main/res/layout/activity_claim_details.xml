@@ -32,6 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
+                    android:onClick="logOut"
                     android:text="Logout" />
 
                 <TextView
@@ -73,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="newMessage"
                         android:text="Message" />
 
                     <Button
@@ -80,6 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="backButton"
                         android:text="Back" />
                 </LinearLayout>
 

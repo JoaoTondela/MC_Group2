@@ -49,4 +49,13 @@ public class NewClaim extends AppCompatActivity {
         Toast mySubmit = Toast.makeText(this, "Claim submited!", Toast.LENGTH_SHORT);
         mySubmit.show();
     }
+
+    public void logOut (View view) {
+
+        // Create an Intent to start the second activity
+        Intent logOutIntent = new Intent(this, LoginActivity.class);
+
+        // Start the new activity.
+        startActivity(logOutIntent);
+    }
 }

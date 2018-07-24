@@ -3,7 +3,9 @@ package pt.ulisboa.tecnico.sise.insure.insureapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -46,16 +48,23 @@ public class ListClaimsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterTitle = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, itemsTitle);
         listViewTitle.setAdapter(adapterTitle);
 
-        Button backButton = (Button) findViewById(R.id.BackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        // attach click listener to list view items
+        listViewID.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
-            public void onClick(View view) {
-                finish();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // create the read note activity, passing to it the index position as parameter
+                Log.d("position", position + "");
+                Intent intent = new Intent(ListClaimsActivity.this, ClaimDetails.class);
+                startActivity(intent);
+
+                // if instead of string, we pass a list with notes, we can retrieve the original Note object this way
+                //Note note = (Note)parent.getItemAtPosition(position);
             }
         });
     }
 
-    public void logOut (View view) {
+    public void logOut(View view) {
 
         // Create an Intent to start the second activity
         Intent logOut = new Intent(this, LoginActivity.class);
@@ -64,12 +73,21 @@ public class ListClaimsActivity extends AppCompatActivity {
         startActivity(logOut);
     }
 
-    public void claimDetails (View view) {
+    public void claimDetails(View view) {
 
         // Create an Intent to start the second activity
         Intent claimDetails = new Intent(this, ClaimDetails.class);
 
         // Start the new activity.
         startActivity(claimDetails);
+    }
+
+    public void backButton(View view) {
+
+        // Create an Intent to start the second activity
+        Intent backButton = new Intent(this, MainActivity.class);
+
+        // Start the new activity.
+        startActivity(backButton);
     }
 }
