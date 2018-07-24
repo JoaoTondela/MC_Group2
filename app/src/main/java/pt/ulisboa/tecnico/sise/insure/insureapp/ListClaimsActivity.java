@@ -16,12 +16,13 @@ public class ListClaimsActivity extends AppCompatActivity {
     private ListView listViewTitle;
     private ArrayList<String> claimid;
     private ArrayList<String> claimtitle;
+    private Bundle savedInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_claims);
-
 
         claimtitle = new ArrayList<String>();
         claimid = new ArrayList<String>();
