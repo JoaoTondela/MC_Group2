@@ -55,5 +55,9 @@ public class CustomerInfoActivity extends AppCompatActivity {
         startActivity(logOut);
     }
 
+    public void getCustomerInfo() {
+        new CustomerInfo().execute();
+    }
+
 
 }
