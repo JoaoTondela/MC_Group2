@@ -1,5 +1,6 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp;
 
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -64,7 +65,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -84,8 +84,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             @Override
             public void onClick(View view) {
                 loginServer(view);
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -93,7 +91,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     }
 
     public void loginServer(View view) {
-        new Login(this).execute();
+        new Login(this).execute(mEmailView.getText().toString(),mPasswordView.getText().toString());
     }
 
     /**
