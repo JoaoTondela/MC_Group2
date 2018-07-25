@@ -26,8 +26,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
 /**
  * A login screen that offers login via email/password.
@@ -61,6 +66,24 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //try {
+        //  Customer customer = null;
+        //  InputStream inputStream;
+        //  inputStream = openFileInput(fileName);
+        //  ObjectInputStream in = new ObjectInputStream(fileIn);
+        //  customer = (Customer) in.readObject();
+        //  in.close();
+        //  inputStream.close();
+
+        //} catch (IOException i) {
+        //  i.printStackTrace();
+        //  return;
+        //} catch (ClassNotFoundException c) {
+        //  System.out.println("Customer not found");
+        //  c.printStackTrace();
+        //  return;
+        //}
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -86,6 +109,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         });
 
         mLoginFormView = findViewById(R.id.login_form);
+
+
     }
 
     public void loginServer(View view) {
