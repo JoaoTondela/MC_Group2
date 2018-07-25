@@ -1,23 +1,16 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp;
-// primeira alteraçao outra vez
-// segunda
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -90,12 +83,17 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginServer(view);
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
+    }
+
+    public void loginServer(View view) {
+        new Login(this).execute();
     }
 
     /**
@@ -142,8 +140,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            //Show a progress spinner, and kick off a background task to
+            //perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
@@ -269,7 +267,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             // TODO: attempt authentication against a network service.
 
             try {
-                // Simulate network access.
+
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
