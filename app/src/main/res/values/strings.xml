@@ -28,7 +28,7 @@
     <string name="date">Date</string>
     <string name="plate">Plate</string>
     <string name="claimid">ClaimID</string>
-    <string name="name">Name</string>
+    <string name="title">Title</string>
     <string name="submit">Submit</string>
     <string name="describe_your_claim">Describe your claim</string>
     <string name="notification">Notification</string>
