@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 
 public class ListClaimsActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class ListClaimsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // create the read note activity, passing to it the index position as parameter
                 Log.d("position", position + "");
-                Intent intent = new Intent(ListClaimsActivity.this, ClaimDetails.class);
+                Intent intent = new Intent(ListClaimsActivity.this, ClaimDetailsActivity.class);
                 startActivity(intent);
 
                 // if instead of string, we pass a list with notes, we can retrieve the original Note object this way
@@ -77,7 +78,7 @@ public class ListClaimsActivity extends AppCompatActivity {
     public void claimDetails(View view) {
 
         // Create an Intent to start the second activity
-        Intent claimDetails = new Intent(this, ClaimDetails.class);
+        Intent claimDetails = new Intent(this, ClaimDetailsActivity.class);
 
         // Start the new activity.
         startActivity(claimDetails);

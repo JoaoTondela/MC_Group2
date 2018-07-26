@@ -1,11 +1,13 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class ClaimDetails extends AppCompatActivity {
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+
+public class ClaimDetailsActivity extends AppCompatActivity {
 
 
     @Override
@@ -26,7 +28,7 @@ public class ClaimDetails extends AppCompatActivity {
     public void newMessage (View view) {
 
         // Create an Intent to start the second activity
-        Intent newMessage = new Intent(this, ListMessages.class);
+        Intent newMessage = new Intent(this, ListMessagesActivity.class);
 
         // Start the new activity.
         startActivity(newMessage);

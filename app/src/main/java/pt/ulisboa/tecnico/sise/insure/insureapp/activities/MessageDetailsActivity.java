@@ -1,9 +1,11 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MessageDetails extends AppCompatActivity {
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+
+public class MessageDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

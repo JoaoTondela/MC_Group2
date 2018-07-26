@@ -1,8 +1,6 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +11,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 
 public class CustomerInfoActivity extends AppCompatActivity {
 

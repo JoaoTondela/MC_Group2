@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 import android.app.NotificationManager;
 import android.content.Context;
@@ -9,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCALLCustomerInfo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public void newClaim (View view) {
 
         // Create an Intent to start the second activity
-        Intent newClaim = new Intent(this, NewClaim.class);
+        Intent newClaim = new Intent(this, NewClaimActivity.class);
 
         // Start the new activity.
         startActivity(newClaim);
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public void messageInfo (View view) {
 
         // Create an Intent to start the second activity
-        Intent messageInfo = new Intent(this, ListMessages.class);
+        Intent messageInfo = new Intent(this, ListMessagesActivity.class);
 
         // Start the new activity.
         startActivity(messageInfo);

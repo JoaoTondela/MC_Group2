@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 
 import android.animation.Animator;
@@ -7,7 +7,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
-import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -29,9 +28,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
-
-import static android.Manifest.permission.READ_CONTACTS;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.Login;
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 
 /**
  * A login screen that offers login via email/password.

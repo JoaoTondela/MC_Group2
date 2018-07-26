@@ -1,15 +1,13 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
+import pt.ulisboa.tecnico.sise.insure.insureapp.activities.MainActivity;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
 public class Login extends AsyncTask <String, Void, Integer> {

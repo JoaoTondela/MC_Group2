@@ -1,13 +1,11 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-
+import pt.ulisboa.tecnico.sise.insure.insureapp.activities.CustomerInfoActivity;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
 public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
