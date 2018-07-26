@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 import android.app.NotificationManager;
 import android.content.Context;
@@ -9,22 +9,54 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCALLCustomerInfo;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallNewClaim;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
 
 public class MainActivity extends AppCompatActivity {
+
+    Context _context = this;
+    private Button btnCustomerInfo;
+    private Button btnListClaims;
+    private Button btnListPlates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnCustomerInfo = (Button) findViewById(R.id.btn_customer_info);
+        btnCustomerInfo.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                Intent intent = new Intent(_context, CustomerInfoActivity.class);
+                _context.startActivity(intent);
+            }
+        });
+
+        btnListClaims = (Button) findViewById(R.id.btn_claims_list);
+        btnListClaims.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(_context, ListClaimsActivity.class);
+                _context.startActivity(intent);
+            }
+        });
+
         Button btn = (Button) findViewById(R.id.btn_notification);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 notification();
+            }
+        });
 
+        btnListPlates = (Button) findViewById(R.id.btn_new_claim);
+        btnListPlates.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                Intent intent = new Intent(_context, NewClaimActivity.class);
+                _context.startActivity(intent);
             }
         });
     }
@@ -40,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, notificationBuilder.build());
     }
-
+/*
     public void customerInfo (View view) {
+
+        //new WSCALLCustomerInfo(_context).execute(GlobalState.getSessionId());
 
         // Create an Intent to start the second activity
         Intent infoIntent = new Intent(this, CustomerInfoActivity.class);
@@ -49,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         // Start the new activity.
         startActivity(infoIntent);
     }
+    */
 
     public void logOut (View view) {
 
@@ -71,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     public void newClaim (View view) {
 
         // Create an Intent to start the second activity
-        Intent newClaim = new Intent(this, NewClaim.class);
+        Intent newClaim = new Intent(this, NewClaimActivity.class);
 
         // Start the new activity.
         startActivity(newClaim);
@@ -80,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     public void messageInfo (View view) {
 
         // Create an Intent to start the second activity
-        Intent messageInfo = new Intent(this, ListMessages.class);
+        Intent messageInfo = new Intent(this, ListMessagesActivity.class);
 
         // Start the new activity.
         startActivity(messageInfo);

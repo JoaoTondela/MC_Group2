@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,10 +6,16 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
+import pt.ulisboa.tecnico.sise.insure.insureapp.activities.MainActivity;
+import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
+
 public class Login extends AsyncTask <String, Void, Integer> {
 
     private static final String TAG = "Login";
     Context _context;
+    public GlobalState globalState = new GlobalState();
+
 
     public Login(Context context){
         _context = context;
@@ -25,6 +31,7 @@ public class Login extends AsyncTask <String, Void, Integer> {
             Log.d(TAG, password);
             int sessionId = WSHelper.login(username, password);        // exists and password correct
             Log.d(TAG, "Login result => " + sessionId);
+            globalState.setSessionId(sessionId);
             return sessionId;
         } catch (Exception e) {
             Log.d(TAG, e.toString());
@@ -35,9 +42,18 @@ public class Login extends AsyncTask <String, Void, Integer> {
 
     @Override
     protected void onPostExecute(Integer sessionId) {
-        if(sessionId==0){
-            Toast.makeText(_context, "Fodeu", Toast.LENGTH_SHORT).show();
-        }else if (sessionId>1){
+        Customer customer = null;
+        if(sessionId == 0){
+            Toast.makeText(_context, "Invalid arguments", Toast.LENGTH_SHORT).show();
+        }else if (sessionId > 0){
+            //try {
+            //    OutputStream outputStream;
+            //  outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            //  ObjectOutputStream out = new ObjectOutputStream(outputStream);
+            //  out.writeObject(customer);
+            //} catch (Exception e) {
+            //  e.printStackTrace();
+            //}
             _context.startActivity(new Intent(_context,MainActivity.class));
         }
 

@@ -1,22 +1,27 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 import android.app.Activity;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class NewClaim extends AppCompatActivity {
+import java.util.ArrayList;
+
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallNewClaim;
+
+public class NewClaimActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "inSure - New Claim";
     private Button buttonSubmit;
     private Button buttonCancel;
+    private Spinner platesSpinner;
+    private ArrayList<String> plates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,11 @@ public class NewClaim extends AppCompatActivity {
 
         buttonSubmit = (Button) findViewById(R.id.submitClaim);
         buttonCancel = (Button) findViewById(R.id.BackButton);
+        platesSpinner = (Spinner) findViewById(R.id.listPlates);
+
+        //for (String plate : getIntent().getStringArrayListExtra(listOfPlates))
+
+        new WSCallNewClaim(this, platesSpinner).execute(GlobalState.getSessionId());
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -1,5 +1,6 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,17 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ListClaimsActivity extends AppCompatActivity {
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
 
-    private ListView listViewID;
+public class ListClaimsActivity extends AppCompatActivity {
+    private ListView listViewId;
     private ListView listViewTitle;
-    private ArrayList<String> claimid;
-    private ArrayList<String> claimtitle;
     private Bundle savedInstanceState;
 
     @Override
@@ -25,38 +26,19 @@ public class ListClaimsActivity extends AppCompatActivity {
         this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_claims);
+        listViewId = findViewById(R.id.ClaimsHistoryIDListView);
+        listViewTitle = findViewById(R.id.ClaimsHistoryTitlesListView);
 
-        claimtitle = new ArrayList<String>();
-        claimid = new ArrayList<String>();
-
-        claimid.add("0001");
-        claimtitle.add("Car Insurance");
-        claimid.add("0002");
-        claimtitle.add("Car Insurance");
-        claimid.add("0003");
-        claimtitle.add("Car Insurance");
-        claimid.add("0003");
-        claimtitle.add("Car Insurance");
-
-        listViewID = (ListView) findViewById(R.id.ClaimsHistoryIDListView);
-        String[] itemsID = claimid.toArray(new String[claimid.size()]);
-        ArrayAdapter<String> adapterID = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, itemsID);
-        listViewID.setAdapter(adapterID);
-
-
-        listViewTitle = (ListView) findViewById(R.id.ClaimsHistoryTitlesListView);
-        String[] itemsTitle = claimtitle.toArray(new String[claimtitle.size()]);
-        ArrayAdapter<String> adapterTitle = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, itemsTitle);
-        listViewTitle.setAdapter(adapterTitle);
+        new WSCallListClaims(this, listViewId, listViewTitle).execute(GlobalState.getSessionId());
 
         // attach click listener to list view items
-        listViewID.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewId.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // create the read note activity, passing to it the index position as parameter
                 Log.d("position", position + "");
-                Intent intent = new Intent(ListClaimsActivity.this, ClaimDetails.class);
+                Intent intent = new Intent(ListClaimsActivity.this, ClaimDetailsActivity.class);
                 startActivity(intent);
 
                 // if instead of string, we pass a list with notes, we can retrieve the original Note object this way
@@ -77,7 +59,7 @@ public class ListClaimsActivity extends AppCompatActivity {
     public void claimDetails(View view) {
 
         // Create an Intent to start the second activity
-        Intent claimDetails = new Intent(this, ClaimDetails.class);
+        Intent claimDetails = new Intent(this, ClaimDetailsActivity.class);
 
         // Start the new activity.
         startActivity(claimDetails);

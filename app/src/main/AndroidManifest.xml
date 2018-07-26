@@ -18,20 +18,20 @@
         android:roundIcon="@drawable/insure_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".CustomerInfoActivity" />
-        <activity android:name=".ListClaimsActivity" />
-        <activity android:name=".ListMessages" />
-        <activity android:name=".ClaimDetails" />
-        <activity android:name=".MessageDetails" />
-        <activity android:name=".NewClaim"></activity>
+        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.CustomerInfoActivity" />
+        <activity android:name=".activities.ListClaimsActivity" />
+        <activity android:name=".activities.ListMessagesActivity" />
+        <activity android:name=".activities.ClaimDetailsActivity" />
+        <activity android:name=".activities.MessageDetailsActivity" />
+        <activity android:name=".activities.NewClaimActivity"></activity>
     </application>
 
 </manifest>

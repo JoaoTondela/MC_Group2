@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.sise.insure.insureapp;
+package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
 
 import android.animation.Animator;
@@ -7,7 +7,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
-import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -28,6 +27,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.Login;
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 
 /**
  * A login screen that offers login via email/password.
@@ -61,6 +63,24 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //try {
+        //  Customer customer = null;
+        //  InputStream inputStream;
+        //  inputStream = openFileInput(fileName);
+        //  ObjectInputStream in = new ObjectInputStream(fileIn);
+        //  customer = (Customer) in.readObject();
+        //  in.close();
+        //  inputStream.close();
+
+        //} catch (IOException i) {
+        //  i.printStackTrace();
+        //  return;
+        //} catch (ClassNotFoundException c) {
+        //  System.out.println("Customer not found");
+        //  c.printStackTrace();
+        //  return;
+        //}
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
