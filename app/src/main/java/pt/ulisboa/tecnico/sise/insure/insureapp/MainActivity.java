@@ -13,18 +13,26 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    Context _context = this;
+    private Button btnCustomerInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnCustomerInfo = (Button) findViewById(R.id.btn_customer_info);
+        btnCustomerInfo.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                new WSCALLCustomerInfo(_context).execute(GlobalState.getSessionId());
+            }
+        });
+
         Button btn = (Button) findViewById(R.id.btn_notification);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 notification();
-
             }
         });
     }
@@ -40,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, notificationBuilder.build());
     }
-
+/*
     public void customerInfo (View view) {
+
+        //new WSCALLCustomerInfo(_context).execute(GlobalState.getSessionId());
 
         // Create an Intent to start the second activity
         Intent infoIntent = new Intent(this, CustomerInfoActivity.class);
@@ -49,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         // Start the new activity.
         startActivity(infoIntent);
     }
+    */
 
     public void logOut (View view) {
 
