@@ -13,11 +13,13 @@ import android.widget.Button;
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCALLCustomerInfo;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
 
 public class MainActivity extends AppCompatActivity {
 
     Context _context = this;
     private Button btnCustomerInfo;
+    private Button btnListClaims;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         btnCustomerInfo.setOnClickListener(new View.OnClickListener() {
             public void onClick (View view) {
                 new WSCALLCustomerInfo(_context).execute(GlobalState.getSessionId());
+            }
+        });
+
+        btnListClaims = (Button) findViewById(R.id.btn_claims_list);
+        btnListClaims.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(_context, ListClaimsActivity.class);
+                _context.startActivity(intent);
             }
         });
 
