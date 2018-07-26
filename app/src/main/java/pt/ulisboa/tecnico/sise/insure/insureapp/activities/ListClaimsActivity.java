@@ -17,6 +17,7 @@ import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
 
 public class ListClaimsActivity extends AppCompatActivity {
+    Context _context = this;
     private ListView listViewId;
     private ListView listViewTitle;
     private Bundle savedInstanceState;
@@ -38,8 +39,8 @@ public class ListClaimsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // create the read note activity, passing to it the index position as parameter
                 Log.d("position", position + "");
-                Intent intent = new Intent(ListClaimsActivity.this, ClaimDetailsActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(_context, ClaimDetailsActivity.class);
+                _context.startActivity(intent);
 
                 // if instead of string, we pass a list with notes, we can retrieve the original Note object this way
                 //Note note = (Note)parent.getItemAtPosition(position);
