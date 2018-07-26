@@ -4,16 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.activities.CustomerInfoActivity;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
 public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
     private static final String TAG = "ClientDetails";
     Context _context;
+    ListView _listView;
 
-    public WSCALLCustomerInfo(Context context){
+    public WSCALLCustomerInfo( Context context, ListView listView ){
         _context = context;
+        _listView= listView;
     }
 
     protected Customer doInBackground(Integer... params) {
@@ -36,14 +43,27 @@ public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
 
     protected void onPostExecute( Customer customer) {
         super.onPostExecute(customer);
-        Intent intent = new Intent(_context, CustomerInfoActivity.class);
-        intent.putExtra("name", customer.getName());
-        intent.putExtra("NIF", customer.getFiscalNumber());
-        intent.putExtra("address", customer.getAddress());
-        intent.putExtra("birthDate", customer.getDateOfBirth());
-        intent.putExtra("policyNumber", customer.getPolicyNumber());
-        _context.startActivity(intent);
 
+        String name = customer.getName();
+        String NIF = String.valueOf(customer.getFiscalNumber());
+        String address = customer.getAddress();
+        String birthDate = customer.getDateOfBirth();
+        String policyNumber = String.valueOf(customer.getPolicyNumber());
+
+        ArrayList<String> customerInfo = new ArrayList<>();
+
+
+        customerInfo.add(name.toString());
+        customerInfo.add(NIF.toString());
+        customerInfo.add(address.toString());
+        customerInfo.add(birthDate.toString());
+        customerInfo.add(policyNumber.toString());
+
+
+
+        String[] itemsInfo = customerInfo.toArray(new String[customerInfo.size()]);
+        ArrayAdapter<String> adapterInfo = new ArrayAdapter<String>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsInfo);
+        _listView.setAdapter(adapterInfo);
 
     }
 

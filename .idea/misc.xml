@@ -25,6 +25,15 @@
       </value>
     </option>
   </component>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+>>>>>>> 558a00e5d27f67b4b8838077e7490a84ddaeee42
+>>>>>>> tondela
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
