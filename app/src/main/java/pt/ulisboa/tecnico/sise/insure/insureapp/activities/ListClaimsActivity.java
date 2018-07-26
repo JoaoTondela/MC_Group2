@@ -32,7 +32,7 @@ public class ListClaimsActivity extends AppCompatActivity {
         new WSCallListClaims(this, listViewId, listViewTitle).execute(GlobalState.getSessionId());
 
         // attach click listener to list view items
-        /*listViewID.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewId.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -44,7 +44,7 @@ public class ListClaimsActivity extends AppCompatActivity {
                 // if instead of string, we pass a list with notes, we can retrieve the original Note object this way
                 //Note note = (Note)parent.getItemAtPosition(position);
             }
-        });*/
+        });
     }
 
     public void logOut(View view) {
