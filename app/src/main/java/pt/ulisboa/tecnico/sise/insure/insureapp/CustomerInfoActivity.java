@@ -27,7 +27,6 @@ public class CustomerInfoActivity extends AppCompatActivity {
         customerInfo.add("27-07-1990");
         customerInfo.add("A0001");
 
-
         setContentView(R.layout.activity_customer_info);
 
         listView = (ListView) findViewById(R.id.customerInfo);
