@@ -13,11 +13,13 @@ import android.widget.Button;
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCALLCustomerInfo;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallNewClaim;
 
 public class MainActivity extends AppCompatActivity {
 
     Context _context = this;
     private Button btnCustomerInfo;
+    private Button btnListPlates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,17 @@ public class MainActivity extends AppCompatActivity {
                 notification();
             }
         });
+
+        btnListPlates = (Button) findViewById(R.id.btn_new_claim);
+        btnListPlates.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                Intent intent = new Intent(_context, NewClaimActivity.class);
+                _context.startActivity(intent);
+            }
+        });
     }
+
+
 
     public void notification() {
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)

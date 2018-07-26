@@ -52,7 +52,6 @@
             android:id="@+id/btn_customer_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="customerInfo"
             android:text="@string/customer_info" />
 
         <Button
