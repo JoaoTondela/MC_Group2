@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         btnCustomerInfo = (Button) findViewById(R.id.btn_customer_info);
         btnCustomerInfo.setOnClickListener(new View.OnClickListener() {
             public void onClick (View view) {
-                new WSCALLCustomerInfo(_context).execute(GlobalState.getSessionId());
+                Intent intent = new Intent(_context, CustomerInfoActivity.class);
+                _context.startActivity(intent);
             }
         });
 
