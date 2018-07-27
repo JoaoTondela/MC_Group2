@@ -1,12 +1,10 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -15,11 +13,13 @@ import java.util.ArrayList;
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCALLCustomerInfo;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
 
 public class CustomerInfoActivity extends AppCompatActivity {
 
     private ArrayList<String> customerInfo;
     private ListView listView;
+    private Button buttonlogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
         Log.d("dsa", "tolo");
         setContentView(R.layout.activity_customer_info);
         listView = findViewById(R.id.customerInfo);
+        buttonlogOut = (Button) findViewById(R.id.LogoutButton);
 
 
         new WSCALLCustomerInfo(this, listView).execute(GlobalState.getSessionId());
@@ -37,6 +38,14 @@ public class CustomerInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerInfoActivity.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        buttonlogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                new WSCallLogOut(CustomerInfoActivity.this).execute(GlobalState.getSessionId());
+
             }
         });
     }

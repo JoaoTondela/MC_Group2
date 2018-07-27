@@ -14,6 +14,8 @@ public class ClaimDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_details);
+
+
     }
 
     public void logOut (View view) {
