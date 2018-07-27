@@ -40,11 +40,23 @@ public class ListClaimsActivity extends AppCompatActivity {
 
         // attach click listener to list view items
         listViewId.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // create the claim details activity, passing to it the claimId as parameter
+                String claimTitle =listViewTitle.getAdapter().getItem(position).toString();
                 String claimIdString = parent.getAdapter().getItem(position).toString();
+                claimId = Integer.parseInt(claimIdString);
+                Intent intent = new Intent(_context, ClaimDetailsActivity.class);
+                intent.putExtra("claimId", claimId);
+                _context.startActivity(intent);
+            }
+        });
+
+        listViewTitle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // create the claim details activity, passing to it the claimId as parameter
+                String claimIdString = listViewId.getAdapter().getItem(position).toString();
                 claimId = Integer.parseInt(claimIdString);
                 Intent intent = new Intent(_context, ClaimDetailsActivity.class);
                 intent.putExtra("claimId", claimId);
