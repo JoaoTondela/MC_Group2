@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
-import pt.ulisboa.tecnico.sise.insure.insureapp.activities.LoginActivity;
 
 public class ListMessagesActivity extends AppCompatActivity {
 
@@ -20,7 +19,7 @@ public class ListMessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messages);
 
-        Button btn = (Button) findViewById(R.id.button);
+        Button btn = (Button) findViewById(R.id.button_chatbox_send);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
