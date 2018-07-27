@@ -42,4 +42,9 @@ public class WSCallMessages extends AsyncTask<Integer, Void, List<ClaimMessage>>
         return null;
     }
 
+    protected void onPostExecute(List<ClaimMessage> claimMessagesList) {
+        super.onPostExecute(claimMessagesList);
+
+    }
+
 }

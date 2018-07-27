@@ -21,6 +21,7 @@ public class ListMessagesActivity extends AppCompatActivity {
     private int claimId;
     private TextView textView;
     private RecyclerView recyclerView;
+    private Button buttonSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class ListMessagesActivity extends AppCompatActivity {
 
         new WSCallMessages(this, recyclerView, claimId).execute(GlobalState.getSessionId());
 
-        Button btn = (Button) findViewById(R.id.button_chatbox_send);
-        btn.setOnClickListener(new View.OnClickListener() {
+        buttonSend = (Button) findViewById(R.id.button_chatbox_send);
+        buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
