@@ -32,6 +32,7 @@ public class Login extends AsyncTask <String, Void, Integer> {
             int sessionId = WSHelper.login(username, password);        // exists and password correct
             Log.d(TAG, "Login result => " + sessionId);
             globalState.setSessionId(sessionId);
+            //globalState.setUserName(Customer.class.getName());
             return sessionId;
         } catch (Exception e) {
             Log.d(TAG, e.toString());

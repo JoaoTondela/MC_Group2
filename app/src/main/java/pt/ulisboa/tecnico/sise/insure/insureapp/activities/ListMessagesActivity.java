@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
@@ -21,6 +23,8 @@ public class ListMessagesActivity extends AppCompatActivity {
     private int claimId;
     private TextView textView;
     private RecyclerView recyclerView;
+    private LinearLayout linearLayout;
+    private ScrollView scrollView;
     private Button buttonSend;
 
     @Override
@@ -28,9 +32,10 @@ public class ListMessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messages);
         claimId = getIntent().getIntExtra("claimId", -1);
-        recyclerView = findViewById(R.id.reyclerview_message_list);
+        scrollView = findViewById(R.id.scroll_view);
+        linearLayout = findViewById(R.id.linear_layout_messages);
 
-        new WSCallMessages(this, recyclerView, claimId).execute(GlobalState.getSessionId());
+        new WSCallMessages(this, scrollView, linearLayout, claimId).execute(GlobalState.getSessionId());
 
         buttonSend = (Button) findViewById(R.id.button_chatbox_send);
         buttonSend.setOnClickListener(new View.OnClickListener() {
