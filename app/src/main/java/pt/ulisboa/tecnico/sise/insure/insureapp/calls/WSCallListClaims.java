@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
@@ -51,5 +52,15 @@ public class WSCallListClaims extends AsyncTask <Integer, Void, List<ClaimItem>>
         String[] itemsTitle = claimtitle.toArray(new String[claimtitle.size()]);
         ArrayAdapter<String> adapterTitle = new ArrayAdapter<String>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsTitle);
         _listViewTitle.setAdapter(adapterTitle);
+
+        /*
+        Collections.reverse(claimsList);
+
+        ArrayAdapter<ClaimItem> adapterId = new ArrayAdapter<ClaimItem>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, claimsList);
+        _listViewId.setAdapter(adapterId);
+
+        ArrayAdapter<ClaimItem> adapterTitle = new ArrayAdapter<ClaimItem>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, claimsList);
+        _listViewTitle.setAdapter(adapterTitle);
+        */
     }
 }

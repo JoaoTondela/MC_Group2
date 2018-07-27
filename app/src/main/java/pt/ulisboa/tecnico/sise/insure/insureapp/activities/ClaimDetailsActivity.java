@@ -4,16 +4,38 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallClaimDetails;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
 
 public class ClaimDetailsActivity extends AppCompatActivity {
-
+    private Bundle savedInstanceState;
+    private ListView listView;
+    private  int claimId;
+    private Button buttonlogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_details);
+        listView = findViewById(R.id.ClaimDetailsListView);
+        claimId = getIntent().getIntExtra("claimId", -1);
+        buttonlogOut = (Button) findViewById(R.id.LogoutButton);
+
+        new WSCallClaimDetails(this, listView, claimId).execute(GlobalState.getSessionId());
+
+        buttonlogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                new WSCallLogOut(ClaimDetailsActivity.this).execute(GlobalState.getSessionId());
+
+            }
+        });
     }
 
     public void logOut (View view) {

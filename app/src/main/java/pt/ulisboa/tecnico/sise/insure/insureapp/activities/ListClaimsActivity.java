@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -15,11 +16,16 @@ import java.util.ArrayList;
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
+import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
 
 public class ListClaimsActivity extends AppCompatActivity {
+    Context _context = this;
     private ListView listViewId;
     private ListView listViewTitle;
     private Bundle savedInstanceState;
+    private Button buttonlogOut;
+    int claimId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class ListClaimsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_claims);
         listViewId = findViewById(R.id.ClaimsHistoryIDListView);
         listViewTitle = findViewById(R.id.ClaimsHistoryTitlesListView);
+        buttonlogOut = (Button) findViewById(R.id.LogoutButton) ;
 
         new WSCallListClaims(this, listViewId, listViewTitle).execute(GlobalState.getSessionId());
 
@@ -36,13 +43,20 @@ public class ListClaimsActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // create the read note activity, passing to it the index position as parameter
-                Log.d("position", position + "");
-                Intent intent = new Intent(ListClaimsActivity.this, ClaimDetailsActivity.class);
-                startActivity(intent);
+                // create the claim details activity, passing to it the claimId as parameter
+                String claimIdString = parent.getAdapter().getItem(position).toString();
+                claimId = Integer.parseInt(claimIdString);
+                Intent intent = new Intent(_context, ClaimDetailsActivity.class);
+                intent.putExtra("claimId", claimId);
+                _context.startActivity(intent);
+            }
+        });
 
-                // if instead of string, we pass a list with notes, we can retrieve the original Note object this way
-                //Note note = (Note)parent.getItemAtPosition(position);
+        buttonlogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                new WSCallLogOut(ListClaimsActivity.this).execute(GlobalState.getSessionId());
+
             }
         });
     }
