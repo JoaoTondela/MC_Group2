@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallNewClaim;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallSubmitNewClaim;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
@@ -26,6 +27,7 @@ public class NewClaimActivity extends AppCompatActivity {
     private Button buttonSubmit;
     private Button buttonCancel;
     private Spinner platesSpinner;
+    private Button buttonlogOut;
     private ArrayList <String> plates;
 
     @Override
@@ -36,6 +38,7 @@ public class NewClaimActivity extends AppCompatActivity {
         buttonSubmit = (Button) findViewById(R.id.submitClaim);
         buttonCancel = (Button) findViewById(R.id.BackButton);
         platesSpinner = (Spinner) findViewById(R.id.listPlates);
+        buttonlogOut = (Button) findViewById(R.id.logoutButton2);
 
         //for (String plate : getIntent().getStringArrayListExtra(listOfPlates))
 
@@ -71,6 +74,15 @@ public class NewClaimActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        buttonlogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                new WSCallLogOut(NewClaimActivity.this).execute(GlobalState.getSessionId());
+
+            }
+        });
+
     }
 
     private String getDescripitonFromText() {
@@ -96,22 +108,5 @@ public class NewClaimActivity extends AppCompatActivity {
         String plate = rawPlate.getTransitionName();
         return plate;
     }
-
-    public void submitMe( View view ) {
-        Toast mySubmit = Toast.makeText(this, "Claim submited!", Toast.LENGTH_SHORT);
-        mySubmit.show();
-    }
-
-    public void logOut( View view ) {
-
-        // Create an Intent to start the second activity
-        Intent logOutIntent = new Intent(this, LoginActivity.class);
-
-        // Start the new activity.
-        startActivity(logOutIntent);
-    }
-
-
-
 }
 

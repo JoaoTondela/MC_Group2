@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
 
 public class ListClaimsActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class ListClaimsActivity extends AppCompatActivity {
     private ListView listViewId;
     private ListView listViewTitle;
     private Bundle savedInstanceState;
+    private Button buttonlogOut;
     int claimId;
 
     @Override
@@ -31,6 +34,7 @@ public class ListClaimsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_claims);
         listViewId = findViewById(R.id.ClaimsHistoryIDListView);
         listViewTitle = findViewById(R.id.ClaimsHistoryTitlesListView);
+        buttonlogOut = (Button) findViewById(R.id.LogoutButton) ;
 
         new WSCallListClaims(this, listViewId, listViewTitle).execute(GlobalState.getSessionId());
 
@@ -45,6 +49,14 @@ public class ListClaimsActivity extends AppCompatActivity {
                 Intent intent = new Intent(_context, ClaimDetailsActivity.class);
                 intent.putExtra("claimId", claimId);
                 _context.startActivity(intent);
+            }
+        });
+
+        buttonlogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                new WSCallLogOut(ListClaimsActivity.this).execute(GlobalState.getSessionId());
+
             }
         });
     }

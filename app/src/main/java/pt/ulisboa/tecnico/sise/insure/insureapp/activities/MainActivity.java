@@ -13,6 +13,7 @@ import android.widget.Button;
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCALLCustomerInfo;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallNewClaim;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
 
@@ -22,11 +23,13 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCustomerInfo;
     private Button btnListClaims;
     private Button btnListPlates;
+    private Button buttonlogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        buttonlogOut = (Button) findViewById(R.id.logoutButton);
 
         btnCustomerInfo = (Button) findViewById(R.id.btn_customer_info);
         btnCustomerInfo.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick (View view) {
                 Intent intent = new Intent(_context, NewClaimActivity.class);
                 _context.startActivity(intent);
+            }
+        });
+
+        buttonlogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                new WSCallLogOut(MainActivity.this).execute(GlobalState.getSessionId());
+
             }
         });
     }
