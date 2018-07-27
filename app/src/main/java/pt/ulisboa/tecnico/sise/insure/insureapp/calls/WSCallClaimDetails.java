@@ -25,7 +25,11 @@ public class WSCallClaimDetails extends AsyncTask<Integer, Void, ClaimRecord> {
     protected ClaimRecord doInBackground(Integer... params) {
         try {
             ClaimRecord claimRecord = WSHelper.getClaimInfo(params[0], _claimId);
-            return claimRecord;
+            if (claimRecord != null) {
+                return claimRecord;
+            } else {
+                Log.d(TAG, "Get Claim Info result claimId " + _claimId + " => null.");
+            }
         } catch (Exception e) {
             Log.d(TAG, e.toString());
         }

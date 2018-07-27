@@ -1,5 +1,6 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ public class ClaimDetailsActivity extends AppCompatActivity {
     private ListView listView;
     private  int claimId;
     private Button buttonlogOut;
+    private Button buttonMessage;
+    Context _context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class ClaimDetailsActivity extends AppCompatActivity {
         listView = findViewById(R.id.ClaimDetailsListView);
         claimId = getIntent().getIntExtra("claimId", -1);
         buttonlogOut = (Button) findViewById(R.id.LogoutButton);
+        buttonMessage = (Button) findViewById(R.id.SupportChatButton);
 
         new WSCallClaimDetails(this, listView, claimId).execute(GlobalState.getSessionId());
 
@@ -33,9 +37,19 @@ public class ClaimDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick( View view ) {
                 new WSCallLogOut(ClaimDetailsActivity.this).execute(GlobalState.getSessionId());
-
             }
         });
+
+        buttonMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(_context, ListMessagesActivity.class);
+                intent.putExtra("claimId", claimId);
+                _context.startActivity(intent);
+            }
+        });
+
+
     }
 
     public void logOut (View view) {
