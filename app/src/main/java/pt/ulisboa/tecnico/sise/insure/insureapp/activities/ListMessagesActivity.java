@@ -17,6 +17,7 @@ import android.widget.TextView;
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListMessages;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallNewMessage;
 
 public class ListMessagesActivity extends AppCompatActivity {
     private EditText _messageContent;
@@ -42,13 +43,13 @@ public class ListMessagesActivity extends AppCompatActivity {
 
 
 
-        Button btn = (Button) findViewById(R.id.button_chatbox_send);
+        final Button btn = (Button) findViewById(R.id.button_chatbox_send);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                notification();
-
+                TextView msg = findViewById(R.id.edittext_chatbox);
+                String message = msg.getText().toString();
+                new WSCallNewMessage(_context, claimId).execute(message);
             }
         });
     }
