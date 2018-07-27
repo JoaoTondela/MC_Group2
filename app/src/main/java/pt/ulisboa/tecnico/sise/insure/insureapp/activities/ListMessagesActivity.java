@@ -7,17 +7,40 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
+import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListMessages;
 
 public class ListMessagesActivity extends AppCompatActivity {
+    private EditText _messageContent;
+    private TextView _sendMessage;
+    private long messageTime;
+    private int claimId;
+    private Button _btnToMessage;
+
+    private Context _context = this;
+    private ListView _listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messages);
+        claimId = getIntent().getIntExtra("claimId",-1 );
+        Log.d("sdja",String.valueOf(claimId) );
+
+        _listView = findViewById(R.id.text_message_body2);
+
+        new WSCallListMessages(_context, claimId,_listView).execute(GlobalState.getSessionId());
+
+
 
         Button btn = (Button) findViewById(R.id.button_chatbox_send);
         btn.setOnClickListener(new View.OnClickListener() {
