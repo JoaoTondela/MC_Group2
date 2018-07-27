@@ -13,6 +13,7 @@ import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallClaimDetails;
 public class ClaimDetailsActivity extends AppCompatActivity {
     private Bundle savedInstanceState;
     private ListView listView;
+    private  int claimId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +21,9 @@ public class ClaimDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_claim_details);
         listView = findViewById(R.id.ClaimDetailsListView);
+        claimId = getIntent().getIntExtra("claimId", -1);
 
-        new WSCallClaimDetails(this, listView).execute(GlobalState.getSessionId());
+        new WSCallClaimDetails(this, listView, claimId).execute(GlobalState.getSessionId());
     }
 
     public void logOut (View view) {

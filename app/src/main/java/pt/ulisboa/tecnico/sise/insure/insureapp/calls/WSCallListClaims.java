@@ -40,8 +40,6 @@ public class WSCallListClaims extends AsyncTask <Integer, Void, List<ClaimItem>>
         ArrayList<String> claimid = new ArrayList<String>();
         ArrayList<String> claimtitle = new ArrayList<String>();
 
-
-
         for (ClaimItem claimItem: claimsList) {
             claimid.add(String.valueOf(claimItem.getId()));
             claimtitle.add(claimItem.getTitle());
