@@ -10,7 +10,7 @@ public class Customer extends Person implements Serializable {
 //    private String _password;
     private int _policyNumber;
     private int _sessionId = -1;
-//    private final List<ClaimRecord> _claimList;
+    private List<ClaimRecord> _claimList;
 //    private final List<String> _plateList;
 
     public Customer(String username, String password, int sessionId, int policyNumber,
@@ -20,7 +20,7 @@ public class Customer extends Person implements Serializable {
 //        _password = password;
         _sessionId = sessionId;
         _policyNumber = policyNumber;
-//        _claimList = claimList;
+        _claimList = claimList;
 //        _plateList = plateList;
     }
 
@@ -93,17 +93,26 @@ public class Customer extends Person implements Serializable {
         setSessionId(-1);
     }
 
-//    public List<ClaimRecord> getClaimRecordList() {
-//        return _claimList;
-//    }
-//
+    public List<ClaimRecord> getClaimRecordList() {
+        return _claimList;
+    }
+
+    public ClaimRecord getClaimRecordById(int claimId) {
+        for (ClaimRecord claimRecord: _claimList) {
+            if (claimRecord.getId() == claimId) {
+                return claimRecord;
+            }
+        }
+        return null;
+    }
+
 //    public List<String> getPlateList() {
 //        return _plateList;
 //    }
 //
-//    public boolean addClaim(ClaimRecord claimRecord) {
-//        return _claimList.add(claimRecord);
-//    }
+    public boolean addClaim(ClaimRecord claimRecord) {
+        return _claimList.add(claimRecord);
+    }
 //
 //    public void addPlate(String plate) {
 //        _plateList.add(plate);

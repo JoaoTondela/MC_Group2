@@ -34,8 +34,9 @@ public class ClaimDetailsActivity extends AppCompatActivity {
         buttonlogOut = (Button) findViewById(R.id.LogoutButton);
         buttonMessage = (Button) findViewById(R.id.SupportChatButton);
         _context = this;
+        GlobalState globalState = (GlobalState) getApplicationContext();
 
-        new WSCallClaimDetails(this, listView, claimId).execute(GlobalState.getSessionId());
+        new WSCallClaimDetails(this, globalState, listView, claimId).execute(GlobalState.getSessionId());
 
         buttonlogOut.setOnClickListener(new View.OnClickListener() {
             @Override

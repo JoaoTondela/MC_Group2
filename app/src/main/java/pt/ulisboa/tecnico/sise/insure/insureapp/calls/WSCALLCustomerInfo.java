@@ -1,7 +1,6 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -9,24 +8,26 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import pt.ulisboa.tecnico.sise.insure.insureapp.R;
-import pt.ulisboa.tecnico.sise.insure.insureapp.activities.CustomerInfoActivity;
+import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
 public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
     private static final String TAG = "ClientDetails";
     Context _context;
     ListView _listView;
+    Customer customer;
+    GlobalState _globalState;
 
-    public WSCALLCustomerInfo( Context context, ListView listView ){
+    public WSCALLCustomerInfo( Context context, GlobalState globalState, ListView listView ){
         _context = context;
-        _listView= listView;
+        _listView = listView;
+        _globalState = globalState;
     }
 
     protected Customer doInBackground(Integer... params) {
         Log.d("test", "test");
         try {
-            Customer customer = WSHelper.getCustomerInfo(params[0]);
+            customer = WSHelper.getCustomerInfo(params[0]);
             if (customer == null) {
                 Log.d(TAG, "Get customer info result => null");
             } else {
@@ -35,7 +36,11 @@ public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
             }
 
         } catch (Exception e) {
+            Log.d(TAG, "esta offline por isso entrou aqui");
+            customer = _globalState.readCustomerFile();
+            Log.d(TAG, "fez readCustomerFile");
             Log.d(TAG, e.toString());
+            return customer;
         }
 
         return null;
