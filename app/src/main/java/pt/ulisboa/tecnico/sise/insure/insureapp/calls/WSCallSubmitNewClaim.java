@@ -37,7 +37,6 @@ public class WSCallSubmitNewClaim extends AsyncTask <ClaimWrapper, Void, Boolean
         return null;
     }
 
-
     public void onPostExecute(  boolean bolean) {
         if ( bolean){
             Intent intent = new Intent(_context, MainActivity.class);

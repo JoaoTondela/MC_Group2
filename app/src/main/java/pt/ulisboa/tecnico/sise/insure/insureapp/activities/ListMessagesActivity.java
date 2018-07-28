@@ -39,9 +39,7 @@ public class ListMessagesActivity extends AppCompatActivity {
 
         GlobalState globalState = (GlobalState) getApplicationContext();
 
-        new WSCallListMessages(_context, globalState, claimId,_listView).execute(GlobalState.getSessionId());
-
-
+        new WSCallListMessages(_context, globalState, claimId, _listView).execute(GlobalState.getCustomer().getSessionId());
 
         final Button btn = (Button) findViewById(R.id.button_chatbox_send);
         btn.setOnClickListener(new View.OnClickListener() {

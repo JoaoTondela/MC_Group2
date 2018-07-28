@@ -1,6 +1,7 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
+import android.icu.text.LocaleDisplayNames;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Adapter;
