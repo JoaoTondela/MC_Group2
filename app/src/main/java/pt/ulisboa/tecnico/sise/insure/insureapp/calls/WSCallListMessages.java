@@ -50,10 +50,10 @@ public class WSCallListMessages extends AsyncTask <Integer, String, List<ClaimMe
         } catch (Exception e) {
             Log.d(TAG, e.toString());
             try {
-                Log.d(TAG, "esta offline por isso entrou aqui");
+                Log.d(TAG, "esta offline no List Messages por isso entrou aqui");
                 Customer customer = _globalState.readCustomerFile();
                 claimMessageList = customer.getClaimRecordById(_claimId).getClaimMessageList();
-                Log.d(TAG, "fez readClaimsListFile");
+                Log.d(TAG, "fez read Customer no WSCallListMessages");
                 return claimMessageList;
             } catch (Exception ee) {
                 Log.d(TAG, ee.toString());
