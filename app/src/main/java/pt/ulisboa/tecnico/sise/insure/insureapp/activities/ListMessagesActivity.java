@@ -49,7 +49,7 @@ public class ListMessagesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 TextView msg = findViewById(R.id.edittext_chatbox);
                 String message = msg.getText().toString();
-                new WSCallNewMessage(_context, claimId).execute(message);
+                new WSCallNewMessage(_context, claimId, _listView).execute(message);
             }
         });
     }
