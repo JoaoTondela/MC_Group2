@@ -2,17 +2,9 @@ package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.activities.MainActivity;
@@ -49,6 +41,14 @@ public class Login extends AsyncTask <String, Void, Integer> {
             return sessionId;
         } catch (Exception e) {
             Log.d(TAG, e.toString());
+            try {
+                Log.d(TAG, "esta offline por isso entrou aqui");
+                customer = _globalState.readCustomerFile();
+                Log.d(TAG, "fez readClaimsListFile");
+                return customer.getSessionId();
+            } catch (Exception ee) {
+                Log.d(TAG, ee.toString());
+            }
         }
         return null;
     }
@@ -60,7 +60,7 @@ public class Login extends AsyncTask <String, Void, Integer> {
         }else if (sessionId > 0){
             try {
                 _globalState.setCustomer(customer);
-                _globalState.writeFile(customer);
+                _globalState.writeCustomerFile(customer);
                 Log.d(TAG, "fez o write file");
             } catch (Exception e) {
                 Log.d(TAG, "nao fez o write");

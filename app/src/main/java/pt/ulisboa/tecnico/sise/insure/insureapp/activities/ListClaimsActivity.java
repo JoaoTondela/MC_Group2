@@ -34,9 +34,10 @@ public class ListClaimsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_claims);
         listViewId = findViewById(R.id.ClaimsHistoryIDListView);
         listViewTitle = findViewById(R.id.ClaimsHistoryTitlesListView);
-        buttonlogOut = (Button) findViewById(R.id.LogoutButton) ;
+        buttonlogOut = (Button) findViewById(R.id.LogoutButton);
+        GlobalState globalState = (GlobalState) getApplicationContext();
 
-        new WSCallListClaims(this, listViewId, listViewTitle).execute(GlobalState.getSessionId());
+        new WSCallListClaims(this, globalState, listViewId, listViewTitle).execute(GlobalState.getSessionId());
 
         // attach click listener to list view items
         listViewId.setOnItemClickListener(new AdapterView.OnItemClickListener() {

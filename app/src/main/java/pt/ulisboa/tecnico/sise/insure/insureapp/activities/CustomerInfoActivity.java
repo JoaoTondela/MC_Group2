@@ -24,13 +24,12 @@ public class CustomerInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("dsa", "tolo");
         setContentView(R.layout.activity_customer_info);
         listView = findViewById(R.id.customerInfo);
         buttonlogOut = (Button) findViewById(R.id.LogoutButton);
+        GlobalState globalState = (GlobalState) getApplicationContext();
 
-
-        new WSCALLCustomerInfo(this, listView).execute(GlobalState.getSessionId());
+        new WSCALLCustomerInfo(this, globalState, listView).execute(GlobalState.getSessionId());
 
         Button backButton = (Button) findViewById(R.id.BackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
