@@ -36,7 +36,7 @@ public class ClaimDetailsActivity extends AppCompatActivity {
         _context = this;
         GlobalState globalState = (GlobalState) getApplicationContext();
 
-        new WSCallClaimDetails(this, globalState, listView, claimId).execute(GlobalState.getSessionId());
+        new WSCallClaimDetails(this, globalState, listView, claimId).execute(GlobalState.getCustomer().getSessionId());
 
         buttonlogOut.setOnClickListener(new View.OnClickListener() {
             @Override

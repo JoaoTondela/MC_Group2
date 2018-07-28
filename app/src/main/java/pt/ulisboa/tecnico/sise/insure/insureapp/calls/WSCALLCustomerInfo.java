@@ -25,7 +25,6 @@ public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
     }
 
     protected Customer doInBackground(Integer... params) {
-        Log.d("test", "test");
         try {
             customer = WSHelper.getCustomerInfo(params[0]);
             if (customer == null) {
@@ -36,9 +35,9 @@ public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
             }
 
         } catch (Exception e) {
-            Log.d(TAG, "esta offline por isso entrou aqui");
+            Log.d(TAG, "esta offline no Customer Info por isso entrou aqui");
             customer = _globalState.readCustomerFile();
-            Log.d(TAG, "fez readCustomerFile");
+            Log.d(TAG, "fez readCustomerFile no Customer Info");
             Log.d(TAG, e.toString());
             return customer;
         }

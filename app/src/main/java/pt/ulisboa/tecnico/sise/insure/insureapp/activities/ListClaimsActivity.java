@@ -37,7 +37,7 @@ public class ListClaimsActivity extends AppCompatActivity {
         buttonlogOut = (Button) findViewById(R.id.LogoutButton);
         GlobalState globalState = (GlobalState) getApplicationContext();
 
-        new WSCallListClaims(this, globalState, listViewId, listViewTitle).execute(GlobalState.getSessionId());
+        new WSCallListClaims(this, globalState, listViewId, listViewTitle).execute(GlobalState.getCustomer().getSessionId());
 
         // attach click listener to list view items
         listViewId.setOnItemClickListener(new AdapterView.OnItemClickListener() {

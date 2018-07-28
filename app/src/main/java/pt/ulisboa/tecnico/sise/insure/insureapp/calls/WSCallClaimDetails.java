@@ -34,6 +34,7 @@ public class WSCallClaimDetails extends AsyncTask<Integer, Void, ClaimRecord> {
         try {
             claimRecord = WSHelper.getClaimInfo(params[0], _claimId);
             customer.addClaim(claimRecord);
+            _globalState.writeCustomerFile(customer);
             return claimRecord;
         } catch (Exception e) {
             Log.d(TAG, e.toString());
@@ -72,7 +73,5 @@ public class WSCallClaimDetails extends AsyncTask<Integer, Void, ClaimRecord> {
         String[] itemsInfo = claimDetails.toArray(new String[claimDetails.size()]);
         ArrayAdapter<String> adapterInfo = new ArrayAdapter<>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsInfo);
         _listView.setAdapter(adapterInfo);
-
-        _globalState.writeCustomerFile(customer);
     }
 }

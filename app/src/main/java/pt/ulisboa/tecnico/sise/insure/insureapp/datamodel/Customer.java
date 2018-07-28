@@ -11,7 +11,7 @@ public class Customer extends Person implements Serializable {
     private int _policyNumber;
     private int _sessionId = -1;
     private List<ClaimRecord> _claimList;
-//    private final List<String> _plateList;
+    private List<String> _plateList;
 
     public Customer(String username, String password, int sessionId, int policyNumber,
                     Person person, List<ClaimRecord> claimList, List<String> plateList) {
@@ -106,10 +106,10 @@ public class Customer extends Person implements Serializable {
         return null;
     }
 
-//    public List<String> getPlateList() {
-//        return _plateList;
-//    }
-//
+    public List<String> getPlateList() {
+        return _plateList;
+    }
+
     public boolean addClaim(ClaimRecord claimRecord) {
         return _claimList.add(claimRecord);
     }

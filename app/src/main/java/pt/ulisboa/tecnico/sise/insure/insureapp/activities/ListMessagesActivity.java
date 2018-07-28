@@ -35,11 +35,11 @@ public class ListMessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messages);
         claimId = getIntent().getIntExtra("claimId",-1 );
-        Log.d("sdja",String.valueOf(claimId) );
-
         _listView = findViewById(R.id.text_message_body2);
 
-        new WSCallListMessages(_context, claimId,_listView).execute(GlobalState.getSessionId());
+        GlobalState globalState = (GlobalState) getApplicationContext();
+
+        new WSCallListMessages(_context, globalState, claimId,_listView).execute(GlobalState.getSessionId());
 
 
 

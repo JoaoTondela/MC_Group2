@@ -31,6 +31,7 @@ public class WSCallListClaims extends AsyncTask <Integer, Void, List<ClaimItem>>
     protected List<ClaimItem> doInBackground(Integer... params) {
         try {
             claimsList = WSHelper.listClaims(params[0]);
+            _globalState.writeListClaimsFile(claimsList);
             Log.d(TAG, claimsList.toString());
             return claimsList;
         } catch (Exception e) {
@@ -65,7 +66,7 @@ public class WSCallListClaims extends AsyncTask <Integer, Void, List<ClaimItem>>
         ArrayAdapter<String> adapterTitle = new ArrayAdapter<String>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsTitle);
         _listViewTitle.setAdapter(adapterTitle);
 
-        _globalState.writeListClaimsFile(claimsList);
+        //_globalState.writeListClaimsFile(claimsList);
 
 
         /*

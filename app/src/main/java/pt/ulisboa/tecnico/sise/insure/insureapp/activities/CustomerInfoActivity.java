@@ -29,7 +29,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
         buttonlogOut = (Button) findViewById(R.id.LogoutButton);
         GlobalState globalState = (GlobalState) getApplicationContext();
 
-        new WSCALLCustomerInfo(this, globalState, listView).execute(GlobalState.getSessionId());
+        new WSCALLCustomerInfo(this, globalState, listView).execute(GlobalState.getCustomer().getSessionId());
 
         Button backButton = (Button) findViewById(R.id.BackButton);
         backButton.setOnClickListener(new View.OnClickListener() {

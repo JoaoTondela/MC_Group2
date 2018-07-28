@@ -17,6 +17,7 @@ public class Login extends AsyncTask <String, Void, Integer> {
     String username;
     String password;
     Customer customer;
+    int sessionId;
     private GlobalState _globalState;
 
 
@@ -33,18 +34,23 @@ public class Login extends AsyncTask <String, Void, Integer> {
             password = params[1];
             Log.d(TAG, username);
             Log.d(TAG, password);
-            int sessionId = WSHelper.login(username, password);        // exists and password correct
-            customer = WSHelper.getCustomerInfo(sessionId);
-            customer.setSessionId(sessionId);
+            sessionId = WSHelper.login(username, password);        // exists and password correct
+            if (sessionId > 0) {
+                customer = WSHelper.getCustomerInfo(sessionId);
+                customer.setSessionId(sessionId);
+                _globalState.setCustomer(customer);
+                _globalState.writeCustomerFile(customer);
+                //_globalState.setSessionId(sessionId);
+            }
             Log.d(TAG, "Login result => " + sessionId);
-            _globalState.setSessionId(sessionId);
+            //_globalState.setSessionId(sessionId);
             return sessionId;
         } catch (Exception e) {
             Log.d(TAG, e.toString());
             try {
-                Log.d(TAG, "esta offline por isso entrou aqui");
+                Log.d(TAG, "esta offline por isso o login entrou aqui");
                 customer = _globalState.readCustomerFile();
-                Log.d(TAG, "fez readClaimsListFile");
+                Log.d(TAG, "fez readCustomerFile no login");
                 return customer.getSessionId();
             } catch (Exception ee) {
                 Log.d(TAG, ee.toString());
@@ -58,14 +64,15 @@ public class Login extends AsyncTask <String, Void, Integer> {
         if(sessionId == 0){
             Toast.makeText(_context, "Invalid arguments", Toast.LENGTH_SHORT).show();
         }else if (sessionId > 0){
-            try {
-                _globalState.setCustomer(customer);
-                _globalState.writeCustomerFile(customer);
-                Log.d(TAG, "fez o write file");
+            /*try {
+                //customer = WSHelper.getCustomerInfo(sessionId);
+                //customer.setSessionId(sessionId);
+                //_globalState.writeCustomerFile(customer);
+                Log.d(TAG, "fez o write file no login");
             } catch (Exception e) {
-                Log.d(TAG, "nao fez o write");
+                Log.d(TAG, "nao fez o write no login");
                 Log.d(TAG, e.toString());
-            }
+            }*/
             _context.startActivity(new Intent(_context,MainActivity.class));
 
         }
