@@ -61,13 +61,6 @@
             android:text="@string/claims_details" />
 
         <Button
-            android:id="@+id/btn_messages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="messageInfo"
-            android:text="@string/messages" />
-
-        <Button
             android:id="@+id/btn_new_claim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
