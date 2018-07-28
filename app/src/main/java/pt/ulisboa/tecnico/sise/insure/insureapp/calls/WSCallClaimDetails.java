@@ -39,7 +39,6 @@ public class WSCallClaimDetails extends AsyncTask<Integer, Void, ClaimRecord> {
         } catch (Exception e) {
             Log.d(TAG, e.toString());
             try {
-                Log.d(TAG, "esta offline por isso entrou aqui");
                 customer = _globalState.readCustomerFile();
                 claimRecord = customer.getClaimRecordById(_claimId);
                 return claimRecord;

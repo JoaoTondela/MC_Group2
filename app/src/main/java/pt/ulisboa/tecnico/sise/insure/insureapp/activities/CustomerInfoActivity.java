@@ -43,7 +43,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
         buttonlogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                new WSCallLogOut(CustomerInfoActivity.this).execute(GlobalState.getSessionId());
+                new WSCallLogOut(CustomerInfoActivity.this).execute(GlobalState.getCustomer().getSessionId());
 
             }
         });

@@ -30,12 +30,11 @@ public class WSCallNewMessage extends AsyncTask <String, Void, List<ClaimMessage
 
         try {
         String message = "Test Message from mobile app";
-        boolean r = WSHelper.submitNewMessage(GlobalState.getSessionId(), _claimId, params[0]);
+        boolean r = WSHelper.submitNewMessage(GlobalState.getCustomer().getSessionId(), _claimId, params[0]);
             if (r) {
-                List<ClaimMessage> claimMessagesList = WSHelper.listClaimMessages(GlobalState.getSessionId(),_claimId);
+                List<ClaimMessage> claimMessagesList = WSHelper.listClaimMessages(GlobalState.getCustomer().getSessionId(),_claimId);
                 return claimMessagesList;
             }
-        Log.d(TAG, "Submit New Message claimId " + _claimId+ " message:" + message + " result => " + r);
 
     } catch (Exception e) {
         Log.d(TAG, e.toString());
@@ -44,12 +43,6 @@ public class WSCallNewMessage extends AsyncTask <String, Void, List<ClaimMessage
 
     public void onPostExecute (List<ClaimMessage> r){
         final AdapterActivity adapterActivity = new AdapterActivity( _context, 1, r);
-       /* _listView.post(new Runnable(){
-            @Override
-            public void run(){
-                _listView.setSelection(adapterActivity.getCount()-1);
-            }
-                           });*/
         _listView.setAdapter(adapterActivity);
     }
 

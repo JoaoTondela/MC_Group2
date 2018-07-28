@@ -40,9 +40,6 @@ public class WSCallListMessages extends AsyncTask <Integer, String, List<ClaimMe
                 for (ClaimMessage claimMessage : claimMessageList) {
                     m += " (" + claimMessage.toString() + ")";
                 }
-                Log.d(TAG, "List claim message result => " + m);
-            } else {
-                Log.d(TAG, "List claim message result => null.");
             }
             customer.getClaimRecordById(_claimId).setClaimMessageList(claimMessageList);
             _globalState.writeCustomerFile(customer);
@@ -50,10 +47,8 @@ public class WSCallListMessages extends AsyncTask <Integer, String, List<ClaimMe
         } catch (Exception e) {
             Log.d(TAG, e.toString());
             try {
-                Log.d(TAG, "esta offline no List Messages por isso entrou aqui");
                 Customer customer = _globalState.readCustomerFile();
                 claimMessageList = customer.getClaimRecordById(_claimId).getClaimMessageList();
-                Log.d(TAG, "fez read Customer no WSCallListMessages");
                 return claimMessageList;
             } catch (Exception ee) {
                 Log.d(TAG, ee.toString());

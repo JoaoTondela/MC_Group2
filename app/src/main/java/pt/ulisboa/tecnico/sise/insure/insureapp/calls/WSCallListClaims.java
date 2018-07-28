@@ -37,9 +37,7 @@ public class WSCallListClaims extends AsyncTask <Integer, Void, List<ClaimItem>>
         } catch (Exception e) {
             Log.d(TAG, e.toString());
             try {
-                Log.d(TAG, "esta offline por isso entrou aqui");
                 claimsList = _globalState.readListClaimsFile();
-                Log.d(TAG, "fez readClaimsListFile");
                 return claimsList;
             } catch (Exception ee) {
                 Log.d(TAG, ee.toString());
@@ -66,17 +64,5 @@ public class WSCallListClaims extends AsyncTask <Integer, Void, List<ClaimItem>>
         ArrayAdapter<String> adapterTitle = new ArrayAdapter<String>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsTitle);
         _listViewTitle.setAdapter(adapterTitle);
 
-        //_globalState.writeListClaimsFile(claimsList);
-
-
-        /*
-        Collections.reverse(claimsList);
-
-        ArrayAdapter<ClaimItem> adapterId = new ArrayAdapter<ClaimItem>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, claimsList);
-        _listViewId.setAdapter(adapterId);
-
-        ArrayAdapter<ClaimItem> adapterTitle = new ArrayAdapter<ClaimItem>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, claimsList);
-        _listViewTitle.setAdapter(adapterTitle);
-        */
     }
 }

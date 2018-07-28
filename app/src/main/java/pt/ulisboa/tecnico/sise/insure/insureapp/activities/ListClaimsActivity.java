@@ -68,7 +68,7 @@ public class ListClaimsActivity extends AppCompatActivity {
         buttonlogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                new WSCallLogOut(ListClaimsActivity.this).execute(GlobalState.getSessionId());
+                new WSCallLogOut(ListClaimsActivity.this).execute(GlobalState.getCustomer().getSessionId());
 
             }
         });

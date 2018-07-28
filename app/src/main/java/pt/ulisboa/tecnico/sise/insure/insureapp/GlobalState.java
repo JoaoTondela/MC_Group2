@@ -16,7 +16,6 @@ import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
 public class GlobalState extends Application {
-    private static Integer sessionId;
     private static Customer customer;
     private static List<ClaimItem> claimsList;
     String filenameCustomer = "inSureLogCustomer";
@@ -25,13 +24,6 @@ public class GlobalState extends Application {
     FileOutputStream outputStream;
     private GlobalState _globalState;
 
-    public static Integer getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(Integer sessionId){
-        this.sessionId = sessionId;
-    }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;

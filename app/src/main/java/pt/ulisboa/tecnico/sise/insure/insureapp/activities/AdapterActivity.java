@@ -24,7 +24,6 @@ public class AdapterActivity extends ArrayAdapter {
         this._messageList=messageList;
         this._context = context;
 
-        Log.d(TAG, _messageList.toString());
     }
 
     @Override
@@ -41,7 +40,6 @@ public class AdapterActivity extends ArrayAdapter {
         String name = getItem(i).getSender();
 
         if (name.equals("AutoInSure")) {
-            Log.d(TAG, "autoInsure message");
             convertView = inflater.inflate(R.layout.activity_message_receiver, viewGroup, false);
             //View avatar = (View)convertView.findViewById(R.id.avatar);
             TextView tvName = (TextView) convertView.findViewById(R.id.text_message_name_received);
@@ -57,10 +55,8 @@ public class AdapterActivity extends ArrayAdapter {
 
         }
         else {
-            Log.d(TAG, "client message");
             convertView = inflater.inflate(R.layout.activity_message_sent, viewGroup, false);
 
-            Log.d(TAG, text);
             //TextView tvName = (TextView) convertView.findViewById(R.id.sender_name);
             TextView tvDate = (TextView) convertView.findViewById(R.id.text_message_time_received);
             TextView tvMessage = (TextView) convertView.findViewById(R.id.text_message_body_received);

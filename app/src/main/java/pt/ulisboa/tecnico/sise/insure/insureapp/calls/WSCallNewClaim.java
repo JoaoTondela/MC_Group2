@@ -30,11 +30,7 @@ public class WSCallNewClaim extends AsyncTask<Integer, Void, List<String>> {
                 for (String plate : plateList) {
                     m += " (" + plate + ")";
                 }
-                Log.d(TAG, "List plates result => " + m);
-
                 return plateList;
-            } else {
-                Log.d(TAG, "List plates result => null.");
             }
         } catch (Exception e) {
             Log.d(TAG, e.toString());

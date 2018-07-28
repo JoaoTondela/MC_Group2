@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,11 +34,11 @@ public class ListMessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messages);
         claimId = getIntent().getIntExtra("claimId",-1 );
-        _listView = findViewById(R.id.text_message_body2);
+        _listView = findViewById(R.id.text_message_body_message_Detais);
 
         GlobalState globalState = (GlobalState) getApplicationContext();
 
-        new WSCallListMessages(_context, globalState, claimId,_listView).execute(GlobalState.getSessionId());
+        new WSCallListMessages(_context, globalState, claimId,_listView).execute(globalState.getCustomer().getSessionId());
 
 
 

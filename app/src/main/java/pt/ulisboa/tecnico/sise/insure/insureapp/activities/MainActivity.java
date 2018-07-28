@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         buttonlogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                new WSCallLogOut(MainActivity.this).execute(GlobalState.getSessionId());
+                new WSCallLogOut(MainActivity.this).execute(GlobalState.getCustomer().getSessionId());
 
             }
         });

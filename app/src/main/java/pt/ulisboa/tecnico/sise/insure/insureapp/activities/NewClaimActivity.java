@@ -40,14 +40,13 @@ public class NewClaimActivity extends AppCompatActivity {
         platesSpinner = (Spinner) findViewById(R.id.listPlates);
         buttonlogOut = (Button) findViewById(R.id.logoutButton2);
 
-        //for (String plate : getIntent().getStringArrayListExtra(listOfPlates))
 
-        new WSCallNewClaim(this, platesSpinner).execute(GlobalState.getSessionId());
+        new WSCallNewClaim(this, platesSpinner).execute(GlobalState.getCustomer().getSessionId());
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick( View v ) {
 
-                int id = GlobalState.getSessionId();
+                int id = GlobalState.getCustomer().getSessionId();
                 String title = getTitleFromText();
                 String occurrenceDate = getDateFromText();
                 String plate = getPlateFromText();
@@ -78,7 +77,7 @@ public class NewClaimActivity extends AppCompatActivity {
         buttonlogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                new WSCallLogOut(NewClaimActivity.this).execute(GlobalState.getSessionId());
+                new WSCallLogOut(NewClaimActivity.this).execute(GlobalState.getCustomer().getSessionId());
 
             }
         });
@@ -105,7 +104,7 @@ public class NewClaimActivity extends AppCompatActivity {
 
     public String getPlateFromText() {
         Spinner rawPlate = (Spinner) findViewById(R.id.listPlates);
-        String plate = rawPlate.getTransitionName();
+        String plate = rawPlate.getSelectedItem().toString();
         return plate;
     }
 }

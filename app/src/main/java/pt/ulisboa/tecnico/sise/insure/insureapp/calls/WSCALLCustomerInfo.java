@@ -30,7 +30,6 @@ public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
             if (customer == null) {
                 Log.d(TAG, "Get customer info result => null");
             } else {
-                Log.d(TAG, "Get customer info result => " + customer.toString());
                 return customer;
             }
 

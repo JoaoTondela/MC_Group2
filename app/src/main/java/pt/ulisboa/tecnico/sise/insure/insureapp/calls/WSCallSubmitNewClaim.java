@@ -29,7 +29,6 @@ public class WSCallSubmitNewClaim extends AsyncTask <ClaimWrapper, Void, Boolean
             String description = params[0]._description;
 
             boolean r = WSHelper.submitNewClaim( sessionId,title,occurrenceDate,plate,description );
-            Log.d(TAG, "Submit new claim result => " + r);
             return r;
         } catch (Exception e) {
             Log.d(TAG, e.toString());
@@ -38,13 +37,10 @@ public class WSCallSubmitNewClaim extends AsyncTask <ClaimWrapper, Void, Boolean
     }
 
 
-    public void onPostExecute(  boolean bolean) {
+    public void onPostExecute(  Boolean bolean) {
         if ( bolean){
             Intent intent = new Intent(_context, MainActivity.class);
             _context.startActivity(intent);
         }
     }
-
-
-
 }

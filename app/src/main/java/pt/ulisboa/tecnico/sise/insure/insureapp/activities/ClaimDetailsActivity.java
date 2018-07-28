@@ -30,7 +30,6 @@ public class ClaimDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_claim_details);
         listView = findViewById(R.id.ClaimDetailsListView);
         claimId = getIntent().getIntExtra("claimId", -1);
-        Log.d("name", String.valueOf(claimId));
         buttonlogOut = (Button) findViewById(R.id.LogoutButton);
         buttonMessage = (Button) findViewById(R.id.SupportChatButton);
         _context = this;
@@ -41,7 +40,7 @@ public class ClaimDetailsActivity extends AppCompatActivity {
         buttonlogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                new WSCallLogOut(ClaimDetailsActivity.this).execute(GlobalState.getSessionId());
+                new WSCallLogOut(ClaimDetailsActivity.this).execute(GlobalState.getCustomer().getSessionId());
 
             }
         });

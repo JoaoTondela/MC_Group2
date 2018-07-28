@@ -20,7 +20,6 @@ public class WSCallLogOut extends AsyncTask <Integer, Void, Boolean> {
     protected Boolean doInBackground( Integer... params ) {
         try {
             boolean result = WSHelper.logout(params[0]);
-            Log.d(TAG, "Logout result => " + result);
             return result;
         } catch (Exception e) {
             Log.d(TAG, e.toString());
