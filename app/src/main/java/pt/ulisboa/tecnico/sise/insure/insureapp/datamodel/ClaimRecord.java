@@ -15,6 +15,7 @@ public class ClaimRecord extends ClaimItem implements Serializable {
     public static final String STATUS_PENDING 	= "pending";	//could be done with enum watching for exceptions
     public static final String STATUS_ACCEPTED 	= "accepted";	//could be done with enum watching for exceptions
     public static final String STATUS_DENIED 	= "denied";		//could be done with enum watching for exceptions
+    public int serverMessageCounter;
 
     public ClaimRecord(int claimId, String claimTitle, String submissionDate, String occurrenceDate, String plate,
                        String description, String status, List<ClaimMessage> msgList) {
@@ -65,6 +66,17 @@ public class ClaimRecord extends ClaimItem implements Serializable {
 
     public void setClaimMessageList(List<ClaimMessage> claimMessageList) {
         _claimMessageList = claimMessageList;
+    }
+
+    public int countInSureMessages() {
+        int c = 0;
+        List<ClaimMessage> allMsg = this.getClaimMessageList();
+        for (ClaimMessage msg: allMsg) {
+            if (msg.getSender().equals("AutoInSure")) {
+                c++;
+            }
+        }
+        return c;
     }
 //
 //    public boolean addClaimMessage(ClaimMessage claimMessage) {

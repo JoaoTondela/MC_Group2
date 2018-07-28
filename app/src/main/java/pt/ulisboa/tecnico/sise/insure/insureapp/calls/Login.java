@@ -6,8 +6,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.List;
+
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.activities.MainActivity;
+import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
+import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimMessage;
+import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimRecord;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
 public class Login extends AsyncTask <String, Void, Integer> {
@@ -31,13 +37,17 @@ public class Login extends AsyncTask <String, Void, Integer> {
         try {
             username = params[0];
             password = params[1];
-
             sessionId = WSHelper.login(username, password);        // exists and password correct
             if (sessionId > 0) {
                 customer = WSHelper.getCustomerInfo(sessionId);
                 customer.setSessionId(sessionId);
+
+                //to get the number of messages sent by InSure for each claim
+                GlobalState.inSureMsgPerClaim = getNumberAutoInSureMessages(sessionId);
+
                 _globalState.setCustomer(customer);
                 _globalState.writeCustomerFile(customer);
+                Log.d(TAG,customer.getClaimRecordList().toString());
             }
             return sessionId;
         } catch (Exception e) {
@@ -50,6 +60,23 @@ public class Login extends AsyncTask <String, Void, Integer> {
             }
         }
         return null;
+    }
+
+    private HashMap getNumberAutoInSureMessages(int sessionId) throws Exception {
+        HashMap inSureMsgPerClaim = new HashMap();
+        List<ClaimItem> claimItems = WSHelper.listClaims(sessionId);
+        for (ClaimItem clm : claimItems) {
+            List<ClaimMessage> msgs = WSHelper.listClaimMessages(sessionId, clm.getId());
+            int autoInSureMsg = 0;
+            for (ClaimMessage msg : msgs) {
+                if (msg.getSender().equals("AutoInSure")) {
+                    autoInSureMsg++;
+                }
+            }
+            inSureMsgPerClaim.put(clm.getId(), autoInSureMsg);
+            //Log.d(String.valueOf(clm.getId()), String.valueOf(autoInSureMsg));
+        }
+        return inSureMsgPerClaim;
     }
 
     @Override

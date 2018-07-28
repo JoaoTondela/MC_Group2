@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
 import java.util.List;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
@@ -23,7 +24,8 @@ public class GlobalState extends Application {
     FileInputStream inputStream;
     FileOutputStream outputStream;
     private GlobalState _globalState;
-
+    public static HashMap inSureMsgPerClaim;
+    public static HashMap diffInSureMsgPerClaim = new HashMap();
 
     public void setCustomer(Customer customer) {
         this.customer = customer;

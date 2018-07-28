@@ -67,12 +67,6 @@
             android:onClick="newClaim"
             android:text="@string/new_claim" />
 
-        <Button
-            android:id="@+id/btn_notification"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/notification" />
-
     </LinearLayout>
 
     <TextView

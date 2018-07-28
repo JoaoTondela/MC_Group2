@@ -34,6 +34,7 @@
         <activity android:name=".activities.ClaimDetailsActivity" />
         <activity android:name=".activities.MessageDetailsActivity" />
         <activity android:name=".activities.NewClaimActivity"></activity>
+        <service android:name=".activities.NotificationService" />
     </application>
 
 </manifest>
