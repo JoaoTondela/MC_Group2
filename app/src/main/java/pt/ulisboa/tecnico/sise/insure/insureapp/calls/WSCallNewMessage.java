@@ -29,14 +29,13 @@ public class WSCallNewMessage extends AsyncTask <String, Void, List<ClaimMessage
     protected List<ClaimMessage> doInBackground( String... params ) {
 
         try {
-        int claimId = 1;
         String message = "Test Message from mobile app";
-        boolean r = WSHelper.submitNewMessage(GlobalState.getSessionId(), claimId, params[0]);
+        boolean r = WSHelper.submitNewMessage(GlobalState.getSessionId(), _claimId, params[0]);
             if (r) {
-                List<ClaimMessage> claimMessagesList = WSHelper.listClaimMessages(GlobalState.getSessionId(),claimId );
+                List<ClaimMessage> claimMessagesList = WSHelper.listClaimMessages(GlobalState.getSessionId(),_claimId);
                 return claimMessagesList;
             }
-        Log.d(TAG, "Submit New Message claimId " + claimId + " message:" + message + " result => " + r);
+        Log.d(TAG, "Submit New Message claimId " + _claimId+ " message:" + message + " result => " + r);
 
     } catch (Exception e) {
         Log.d(TAG, e.toString());
@@ -44,7 +43,13 @@ public class WSCallNewMessage extends AsyncTask <String, Void, List<ClaimMessage
     }
 
     public void onPostExecute (List<ClaimMessage> r){
-        AdapterActivity adapterActivity = new AdapterActivity( _context, 1, r);
+        final AdapterActivity adapterActivity = new AdapterActivity( _context, 1, r);
+       /* _listView.post(new Runnable(){
+            @Override
+            public void run(){
+                _listView.setSelection(adapterActivity.getCount()-1);
+            }
+                           });*/
         _listView.setAdapter(adapterActivity);
     }
 
