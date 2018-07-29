@@ -2,6 +2,7 @@ package pt.ulisboa.tecnico.sise.insure.insureapp;
 
 import android.app.Application;
 import android.content.Context;
+import android.net.Credentials;
 import android.util.Log;
 
 import java.io.FileInputStream;
@@ -10,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,11 +21,12 @@ import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 public class GlobalState extends Application {
     private static Customer customer;
     private static List<ClaimItem> claimsList;
+    private static ArrayList<String> credentials;
     String filenameCustomer = "inSureLogCustomer";
     String filenameClaimsList = "inSureLogClaimsList";
+    String filenameCredentials = "inSureLogCredentials";
     FileInputStream inputStream;
     FileOutputStream outputStream;
-    private GlobalState _globalState;
     public static HashMap inSureMsgPerClaim;
     public static HashMap diffInSureMsgPerClaim = new HashMap();
 
@@ -37,6 +40,10 @@ public class GlobalState extends Application {
 
     public void setClaimsList(List<ClaimItem> claimsList) {
         this.claimsList = claimsList;
+    }
+
+    public void setCredentials(ArrayList<String> credentials) {
+        this.credentials = credentials;
     }
 
     public void writeCustomerFile(Customer customer) {
@@ -111,6 +118,44 @@ public class GlobalState extends Application {
             i.printStackTrace();
         } catch (ClassNotFoundException c) {
             System.out.println("ClaimsList not found");
+            c.printStackTrace();
+        } return null;
+    }
+
+    public void writeCredentialsFile(ArrayList<String> credentials) {
+        try {
+            outputStream = openFileOutput(filenameCredentials, Context.MODE_PRIVATE);
+
+            ObjectOutputStream out = new ObjectOutputStream(outputStream);
+
+            out.writeObject(credentials);
+            out.close();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.d("ClaimsListFiles", "ClaimsListFilesWrite: " + fileList()[0]);
+    }
+
+    public ArrayList<String> readCredentialsFile() {
+        try {
+            ArrayList<String> credentials = null;
+
+            inputStream = openFileInput(filenameCredentials);
+            ObjectInputStream in = new ObjectInputStream(inputStream);
+            credentials = (ArrayList<String>) in.readObject();
+            in.close();
+            inputStream.close();
+
+            this.setCredentials(credentials);
+            Log.d("CredentialsFile", "CredentialFileRead: " + fileList()[0]);
+            return credentials;
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Credentials not found");
             c.printStackTrace();
         } return null;
     }

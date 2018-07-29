@@ -54,18 +54,6 @@ public class ListMessagesActivity extends AppCompatActivity {
         });
     }
 
-    public void notification() {
-        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.insure_logo)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.insure_logo))
-                .setContentTitle("Claim Received")
-                .setContentText("We've received your claim and we will review it!");
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(2, notificationBuilder.build());
-    }
-
     public void logOut(View view) {
 
         // Create an Intent to start the second activity

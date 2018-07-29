@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -38,9 +40,17 @@ public class WSCallSubmitNewClaim extends AsyncTask <ClaimWrapper, Void, Boolean
 
 
     public void onPostExecute(  Boolean bolean) {
-        if ( bolean){
+        try {
+            if (bolean) {
+                Toast.makeText(_context, "Claim submited!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(_context, MainActivity.class);
+                _context.startActivity(intent);
+            }
+        } catch (Exception ee) {
+            Toast.makeText(_context, "Unable to submit claims offline", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(_context, MainActivity.class);
             _context.startActivity(intent);
+            Log.d(TAG, ee.toString());
+            }
         }
-    }
 }

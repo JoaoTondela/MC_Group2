@@ -1,16 +1,19 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Adapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.List;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.activities.AdapterActivity;
+import pt.ulisboa.tecnico.sise.insure.insureapp.activities.MainActivity;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimMessage;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
 
@@ -59,8 +62,15 @@ public class WSCallListMessages extends AsyncTask <Integer, String, List<ClaimMe
     }
 
     protected void onPostExecute ( List<ClaimMessage> claimMessageList ){
-        AdapterActivity adapterTitle = new AdapterActivity(_context,1,claimMessageList);
-        _listView.setAdapter(adapterTitle);
+        try {
+            AdapterActivity adapterTitle = new AdapterActivity(_context,1,claimMessageList);
+            _listView.setAdapter(adapterTitle);
+        } catch (Exception e) {
+            Toast.makeText(_context, "Messages for this claim not loaded for offline mode!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(_context, MainActivity.class);
+            _context.startActivity(intent);
+            Log.d(TAG, e.toString());
+        }
     }
 
     }

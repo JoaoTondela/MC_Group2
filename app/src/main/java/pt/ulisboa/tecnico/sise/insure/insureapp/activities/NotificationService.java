@@ -41,7 +41,7 @@ public class NotificationService extends Service {
         Log.d(TAG, "onCreate Notification Service");
         _timer = new Timer();
         _timerTask = new TimerTask() {
-            HashMap currentInSureMsgPerClaim;
+            HashMap currentInSureMsgPerClaim = new HashMap();
             @Override
             public void run() {
                 try {
@@ -52,9 +52,13 @@ public class NotificationService extends Service {
                 }
                 if (!currentInSureMsgPerClaim.equals(GlobalState.inSureMsgPerClaim)) {
                     for (Object key: currentInSureMsgPerClaim.keySet()) {
-                        boolean isDifferent = !GlobalState.inSureMsgPerClaim.get(key).equals(currentInSureMsgPerClaim.get(key));
-                        if (isDifferent) { createNotification(key); }
-                        GlobalState.diffInSureMsgPerClaim.put(key, isDifferent);
+                        try {
+                            boolean isDifferent = !GlobalState.inSureMsgPerClaim.get(key).equals(currentInSureMsgPerClaim.get(key));
+                            if (isDifferent) { createNotification(key); }
+                            GlobalState.diffInSureMsgPerClaim.put(key, isDifferent);
+                        } catch (Exception e) {
+                            Log.d(TAG, e.toString());
+                        }
                     }
                     GlobalState.inSureMsgPerClaim = currentInSureMsgPerClaim;
                 }

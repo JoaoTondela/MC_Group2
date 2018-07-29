@@ -1,15 +1,18 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp.calls;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
+import pt.ulisboa.tecnico.sise.insure.insureapp.activities.MainActivity;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimRecord;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.Customer;
@@ -50,27 +53,34 @@ public class WSCallClaimDetails extends AsyncTask<Integer, Void, ClaimRecord> {
     }
 
     protected void onPostExecute(ClaimRecord claimRecord) {
-        super.onPostExecute(claimRecord);
-        String claimId = String.valueOf(claimRecord.getId());
-        String claimTitle = claimRecord.getTitle();
-        String plate = claimRecord.getPlate();
-        String submissionDate = claimRecord.getSubmissionDate();
-        String ocurrenceDate = claimRecord.getOccurrenceDate();
-        String description = claimRecord.getDescription();
-        String status = claimRecord.getStatus();
+        try {
+            super.onPostExecute(claimRecord);
+            String claimId = String.valueOf(claimRecord.getId());
+            String claimTitle = claimRecord.getTitle();
+            String plate = claimRecord.getPlate();
+            String submissionDate = claimRecord.getSubmissionDate();
+            String ocurrenceDate = claimRecord.getOccurrenceDate();
+            String description = claimRecord.getDescription();
+            String status = claimRecord.getStatus();
 
-        ArrayList<String> claimDetails = new ArrayList<>();
+            ArrayList<String> claimDetails = new ArrayList<>();
 
-        claimDetails.add(claimId);
-        claimDetails.add(claimTitle);
-        claimDetails.add(plate);
-        claimDetails.add(submissionDate);
-        claimDetails.add(ocurrenceDate);
-        claimDetails.add(description);
-        claimDetails.add(status);
+            claimDetails.add(claimId);
+            claimDetails.add(claimTitle);
+            claimDetails.add(plate);
+            claimDetails.add(submissionDate);
+            claimDetails.add(ocurrenceDate);
+            claimDetails.add(description);
+            claimDetails.add(status);
 
-        String[] itemsInfo = claimDetails.toArray(new String[claimDetails.size()]);
-        ArrayAdapter<String> adapterInfo = new ArrayAdapter<>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsInfo);
-        _listView.setAdapter(adapterInfo);
+            String[] itemsInfo = claimDetails.toArray(new String[claimDetails.size()]);
+            ArrayAdapter<String> adapterInfo = new ArrayAdapter<>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsInfo);
+            _listView.setAdapter(adapterInfo);
+        } catch (Exception e) {
+            Toast.makeText(_context, "Data of this claim not loaded for offline mode!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(_context, MainActivity.class);
+            _context.startActivity(intent);
+            Log.d(TAG, e.toString());
+        }
     }
 }

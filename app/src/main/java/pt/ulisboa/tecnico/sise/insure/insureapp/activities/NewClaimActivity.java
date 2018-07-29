@@ -57,8 +57,6 @@ public class NewClaimActivity extends AppCompatActivity {
                 new WSCallSubmitNewClaim(NewClaimActivity.this).execute(claimWrapper);
                 Intent resultIntent = new Intent();
                 setResult(Activity.RESULT_OK, resultIntent);
-                // write a toast message
-                Toast.makeText(v.getContext(), "Claim submited!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

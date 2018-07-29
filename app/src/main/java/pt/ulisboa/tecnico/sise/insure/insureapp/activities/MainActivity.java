@@ -1,36 +1,22 @@
 package pt.ulisboa.tecnico.sise.insure.insureapp.activities;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import pt.ulisboa.tecnico.sise.insure.insureapp.GlobalState;
 import pt.ulisboa.tecnico.sise.insure.insureapp.R;
-import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCALLCustomerInfo;
 import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
-import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallNewClaim;
-import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallListClaims;
 
 public class MainActivity extends AppCompatActivity {
 
     Context _context = this;
     private Button btnCustomerInfo;
     private Button btnListClaims;
-    private Button btnListPlates;
+    private Button btnNewClaim;
     private Button buttonlogOut;
     public Intent notIntent;
 
@@ -59,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnListPlates = (Button) findViewById(R.id.btn_new_claim);
-        btnListPlates.setOnClickListener(new View.OnClickListener() {
+        btnNewClaim = (Button) findViewById(R.id.btn_new_claim);
+        btnNewClaim.setOnClickListener(new View.OnClickListener() {
             public void onClick (View view) {
                 Intent intent = new Intent(_context, NewClaimActivity.class);
                 _context.startActivity(intent);

@@ -20,6 +20,7 @@ import pt.ulisboa.tecnico.sise.insure.insureapp.calls.WSCallLogOut;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
 
 public class ListClaimsActivity extends AppCompatActivity {
+    private static final String TAG = "ListClaimsActivity";
     Context _context = this;
     private ListView listViewId;
     private ListView listViewTitle;
@@ -44,8 +45,7 @@ public class ListClaimsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // create the claim details activity, passing to it the claimId as parameter
-                String claimTitle =listViewTitle.getAdapter().getItem(position).toString();
-                String claimIdString = parent.getAdapter().getItem(position).toString();
+                String claimIdString = listViewId.getAdapter().getItem(position).toString();
                 claimId = Integer.parseInt(claimIdString);
                 Intent intent = new Intent(_context, ClaimDetailsActivity.class);
                 intent.putExtra("claimId", claimId);

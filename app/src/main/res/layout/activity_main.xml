@@ -57,14 +57,12 @@
             android:id="@+id/btn_claims_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="claimInfo"
             android:text="@string/claims_details" />
 
         <Button
             android:id="@+id/btn_new_claim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="newClaim"
             android:text="@string/new_claim" />
 
     </LinearLayout>

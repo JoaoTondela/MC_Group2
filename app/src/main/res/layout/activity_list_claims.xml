@@ -65,6 +65,7 @@
                 android:layout_below="@+id/ClaimsHistoryTextView"
                 android:layout_toEndOf="@+id/ClaimsHistoryIDListView" />
 
+
         </RelativeLayout>
 
     </LinearLayout>
