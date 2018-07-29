@@ -168,10 +168,7 @@ public class NotificationService extends Service {
                 }
             }
             inSureMsgPerClaim.put(clm.getId(), autoInSureMsg);
-            //Log.d(String.valueOf(clm.getId()), String.valueOf(autoInSureMsg));
         }
         return inSureMsgPerClaim;
     }
-
-
 }
