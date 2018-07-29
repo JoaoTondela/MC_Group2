@@ -30,7 +30,6 @@ public class WSCallListMessages extends AsyncTask <Integer, String, List<ClaimMe
         _claimId = claimId;
         _listView = listView;
         _globalState = globalState;
-        Log.d("claim", String.valueOf(claimId));
     }
 
     @Override

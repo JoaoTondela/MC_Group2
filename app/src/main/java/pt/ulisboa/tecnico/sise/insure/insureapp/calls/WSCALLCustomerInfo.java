@@ -34,9 +34,7 @@ public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
             }
 
         } catch (Exception e) {
-            Log.d(TAG, "esta offline no Customer Info por isso entrou aqui");
             customer = _globalState.readCustomerFile();
-            Log.d(TAG, "fez readCustomerFile no Customer Info");
             Log.d(TAG, e.toString());
             return customer;
         }
@@ -55,14 +53,11 @@ public class WSCALLCustomerInfo extends AsyncTask <Integer, Void, Customer> {
 
         ArrayList<String> customerInfo = new ArrayList<>();
 
-
         customerInfo.add(name.toString());
         customerInfo.add(NIF.toString());
         customerInfo.add(address.toString());
         customerInfo.add(birthDate.toString());
         customerInfo.add(policyNumber.toString());
-
-
 
         String[] itemsInfo = customerInfo.toArray(new String[customerInfo.size()]);
         ArrayAdapter<String> adapterInfo = new ArrayAdapter<String>(_context, android.R.layout.simple_list_item_1, android.R.id.text1, itemsInfo);

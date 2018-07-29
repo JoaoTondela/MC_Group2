@@ -59,45 +59,16 @@ public class Login extends AsyncTask <String, Void, Integer> {
             Log.d(TAG, e.toString());
             try {
                 credentials = _globalState.readCredentialsFile();
-                Log.d(TAG, credentials.toString());
-                Log.d("user é",credentials.get(0));
-                Log.d("pass é",credentials.get(0));
-                Log.d("username", username);
-                Log.d("pass", password);
                 if (username.equals(credentials.get(0)) && password.equals(credentials.get(1))) {
-                    Log.d("username", username);
-                    Log.d("pass", password);
                     customer = _globalState.readCustomerFile();
-                    Log.d("CUSTOMER", String.valueOf(customer.getSessionId()));
                     return customer.getSessionId();
                 }
-                Log.d("RETORNO ====","OOOOOOO");
                 return 0;
             } catch (Exception ee) {
                 Log.d(TAG, ee.toString());
                 return 0;
             }
         }
-        /*
-        if (sessionId > 0) {
-                customer = WSHelper.getCustomerInfo(sessionId);
-                customer.setSessionId(sessionId);
-                GlobalState.inSureMsgPerClaim = getNumberAutoInSureMessages(sessionId);
-                _globalState.setCustomer(customer);
-                _globalState.writeCustomerFile(customer);
-                Log.d(TAG,customer.getClaimRecordList().toString());
-            }
-            return sessionId;
-        } catch (Exception e) {
-            Log.d(TAG, e.toString());
-            try {
-                customer = _globalState.readCustomerFile();
-                return customer.getSessionId();
-            } catch (Exception ee) {
-                Log.d(TAG, ee.toString());
-            }
-        }*/
-
     }
 
     //to get the number of messages sent by InSure for each claim

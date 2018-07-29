@@ -36,7 +36,6 @@ public class WSCallListClaims extends AsyncTask <Integer, Void, List<ClaimItem>>
         try {
             claimsList = WSHelper.listClaims(params[0]);
             _globalState.writeListClaimsFile(claimsList);
-            Log.d(TAG, claimsList.toString());
             return claimsList;
         } catch (Exception e) {
             Log.d(TAG, e.toString());

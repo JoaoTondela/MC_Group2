@@ -26,19 +26,14 @@ import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimItem;
 import pt.ulisboa.tecnico.sise.insure.insureapp.datamodel.ClaimMessage;
 
 public class NotificationService extends Service {
-    //public NotificationService() {
-    //}
+
     private static final String TAG = "NotificationService";
     private static Timer _timer;
     private TimerTask _timerTask;
     private static boolean FLAG_RUNNING;
 
-//   public Customer customer = GlobalState.getCustomer();
-//   public ArrayList<ClaimRecord> claimRecords = new ArrayList<ClaimRecord>();
-
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate Notification Service");
         _timer = new Timer();
         _timerTask = new TimerTask() {
             HashMap currentInSureMsgPerClaim = new HashMap();
@@ -46,7 +41,6 @@ public class NotificationService extends Service {
             public void run() {
                 try {
                     currentInSureMsgPerClaim = getNumberAutoInSureMessages(GlobalState.getCustomer().getSessionId());
-                    Log.d(TAG, currentInSureMsgPerClaim.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,7 +66,6 @@ public class NotificationService extends Service {
     }
 
     private void customRun() {
-        Log.d(TAG, "customRun");
         _timer.schedule(_timerTask, 1000, 3000);
     }
 
@@ -90,7 +83,6 @@ public class NotificationService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "entrou no onDestroy");
         //_timer.cancel();
         super.onDestroy();
     }
